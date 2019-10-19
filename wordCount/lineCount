@@ -3,17 +3,17 @@
 
 int main()
 {
-	//ͷ�ļ�����Ķ��� 
+	//头文件和类的定义 
 class testfile
 {
 public:
-    testfile countcha(char *, testfile);//�����ַ���
-    testfile countword(char *, testfile);//���㵥����
-    testfile countline(char *, testfile);//��������
+    testfile countcha(char *, testfile);//计算字符数
+    testfile countword(char *, testfile);//计算单词数
+    testfile countline(char *, testfile);//计算行数
     int getcharacters();
     int getlines();
     int getwords();
-    char *content;//����ı��ļ����� 
+    char *content;//存放文本文件数据 
     void init();
 private:
     int characters;
@@ -31,7 +31,7 @@ void testfile::init()
 }
 
 
-	//ͳ���ı��ļ����ַ����Լ����� 
+	//统计文本文件的字符数以及行数 
 testfile testfile::countcha(char *t, testfile f1)
 {
     int i = 0;
@@ -39,15 +39,15 @@ testfile testfile::countcha(char *t, testfile f1)
     myfile.open(t);
     if (!myfile.is_open())
     {
-        cout << "�ļ���ʧ��" << endl;
+        cout << "文件打开失败" << endl;
     }
     char c;
-    myfile >> noskipws;//ǿ�ƶ���ո�ͻ��з�
+    myfile >> noskipws;//强制读入空格和换行符
     while (!myfile.eof())
     {
         myfile >> c;
         if (myfile.eof())
-            break;//��ֹ���һ���ַ��������
+            break;//防止最后一个字符输出两次
         i++;
     }
     f1.characters = i;
@@ -60,10 +60,10 @@ testfile testfile::countline(char *t, testfile f1)
     ifstream myfile;
     myfile.open(t, ios::in);
     int i = 0;
-    string temp;//��Ϊgetline����ʹ��
+    string temp;//作为getline参数使用
     if (!myfile.is_open())
     {
-        cout << "�ļ���ʧ��" << endl;
+        cout << "文件打开失败" << endl;
     }
     while (getline(myfile, temp))
     {
@@ -77,8 +77,6 @@ testfile testfile::countline(char *t, testfile f1)
 
 	
 }
-
-
 
 
 
